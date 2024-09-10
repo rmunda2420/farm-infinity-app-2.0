@@ -1,0 +1,382 @@
+type AppVersionInterval @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  interval: String
+}
+
+type FinYear @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  financialYear: String
+  startDate: String
+  endDate: String
+  isCurrent: Boolean
+  FinYearToAppVersionInterval: AppVersionInterval @hasOne
+}
+
+type FamilyMember @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  name: String
+  relation: String
+  age: Int
+  FamilyMemberToBios: [Bio] @manyToMany(relationName: "FamilyMemberBio")
+  version: Int
+}
+
+type Repayment @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  principal: Float
+  interest: Float
+  payment: Float
+  month: Int
+  principalBalance: Float
+  amountReceived: Float
+  emiStatus: Boolean
+  emiReceivedOn: String
+  emiCreditedOn: String
+  paymentMode: String
+  referenceNo: String
+  dueDate: String
+  loanID: ID! @index(name: "byLoan")
+}
+
+type PaymentDetail @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  amount: Float
+  emiStatus: Boolean
+  emiReceivedOn: String
+  emiCreditedOn: String
+  paymentMode: String
+  referenceNo: String
+  loanID: ID! @index(name: "byLoan")
+}
+
+type Disbursal @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  repaymentStartMonth: String
+  disbursalDate: String
+  remarks: String
+}
+
+type Loan @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  loanId: String
+  amount: Float
+  tenure: Int
+  sanctionType: String
+  partnerLoanReferenceId: String
+  partnerCustomerReferenceId: String
+  channelPartnerReferenceId: String
+  lendingPartnerId: String
+  approvalDate: String
+  moratorium: Boolean
+  moratoriumPeriod: String
+  emiAmount: Float
+  interestRate: Float
+  per: String
+  totalInterest: Float
+  totalRepaymentAmount: Float
+  bureauScore: Int
+  fiScore: String
+  loanStatus: Int
+  isClosed: Boolean
+  farmerapplicationID: ID! @index(name: "byFarmerApplication")
+  LoanToDisbursal: Disbursal @hasOne
+  LoanToPaymentDetails: [PaymentDetail] @hasMany(indexName: "byLoan", fields: ["id"])
+  LoanToRepayments: [Repayment] @hasMany(indexName: "byLoan", fields: ["id"])
+}
+
+type LivestockPolicyInfo @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  applicationFormPageOneImageUrl: String
+  applicationFormPageTwoImageUrl: String
+  healthCertificatePageOneImageUrl: String
+  healthCertificatePageTwoImageUrl: String
+  livestockFrontImageUrl: String
+  livestockBackImageUrl: String
+  livestockLeftImageUrl: String
+  livestockRightImageUrl: String
+  livestockWithTagImageUrl: String
+  tagNo: String
+  status: Int
+  insurancecustomerinfoID: ID! @index(name: "byInsuranceCustomerInfo")
+}
+
+type InsuranceCustomerInfo @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  name: String
+  phoneNo: String
+  village: String
+  poiType: String
+  poiNumber: String
+  poiImageFrontUrl: String
+  poiImageBackUrl: String
+  poaType: String
+  poaNumber: String
+  poaImageFrontUrl: String
+  poaImageBackUrl: String
+  InsCustInfoToCustLivstkPolInfos: [LivestockPolicyInfo] @hasMany(indexName: "byInsuranceCustomerInfo", fields: ["id"])
+  poiTypeId: Int
+  poaTypeId: Int
+}
+
+type FieldAgent @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  firstName: String
+  middleName: String
+  lastName: String
+  phone: String
+  profession: String
+  qualification: String
+  address: String
+  pan: String
+  panImage: String
+  accountName: String
+  bankName: String
+  ifsc: String
+  altPhone: String
+  fpoId: String
+  fpoName: String
+  isMapped: Boolean
+  changedInitialPassword: Boolean
+  userTypeId: Int
+  addPrivilege: Boolean
+  editPrivilege: Boolean
+  deletePrivilege: Boolean
+  viewPrivilege: Boolean
+  isActive: Boolean
+  userId: String
+}
+
+type FarmerSecondaryActivity @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  activityId: Int
+  farmerapplicationID: ID! @index(name: "byFarmerApplication")
+}
+
+type CropSeason @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  seasonName: String
+  seasonId: Int
+  isSecondaryActivity: Boolean!
+  farmingID: ID! @index(name: "byFarming")
+  CropSeasonsToGrownCrops: [GrownCrop] @hasMany(indexName: "byCropSeason", fields: ["id"])
+  CropSeasonToCropInputs: [CropInput] @hasMany(indexName: "byCropSeason", fields: ["id"])
+}
+
+type CropInput @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  inputName: String
+  inputId: Int
+  inputQuantity: Float
+  quantityUnit: String
+  quantityUnitId: Int
+  isSecondaryActivity: Boolean!
+  cropseasonID: ID! @index(name: "byCropSeason")
+}
+
+type FpoGrownCrop @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  cropName: String
+  cropId: Int
+  fpoID: ID! @index(name: "byFpo")
+}
+
+type Fpo @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  FpoToFpoGrownCrops: [FpoGrownCrop] @hasMany(indexName: "byFpo", fields: ["id"])
+  constitution: String
+  entityName: String
+  noOfFarmers: Int
+  address: String
+  state: String
+  district: String
+  areaOfOperation: Float
+  establishmentYear: String
+  previousYearTurnover: Float
+  contactPersonName: String
+  contactPersonPhone: String
+  isPanCollected: Boolean
+  panNumber: String
+  panImage: String
+  isIncorporationDocCollected: Boolean
+  incorporationDocImage: String
+  isRegistrationNoCollected: Boolean
+  registrationNoImage: String
+  isDirectorShareHolderListCollected: Boolean
+  directorShareHolderListImage: String
+  changedInitialPassword: Boolean
+  userTypeId: Int
+  addPrivilege: Boolean
+  editPrivilege: Boolean
+  deletePrivilege: Boolean
+  viewPrivilege: Boolean
+  isActive: Boolean
+  userId: String
+}
+
+type CropList @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  cropId: Int!
+  cropName: String!
+  category: String!
+  subCategory: String
+  isActive: Boolean
+}
+
+type Declaration @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  farmerDeclaration: Boolean
+  farmerDeclarationText: String
+  officerDeclaration: Boolean
+  officerDeclarationText: String
+}
+
+type GrownCrop @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  cropName: String
+  cropId: Int
+  photo: String
+  isSecondaryActivity: Boolean!
+  cropseasonID: ID! @index(name: "byCropSeason")
+  version: Int
+}
+
+type Equipment @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  equipmentName: String
+  equipmentId: Int
+  farmingID: ID! @index(name: "byFarming")
+  isSecondaryActivity: Boolean!
+  version: Int
+}
+
+type Irrigation @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  irrigationType: String
+  irrigationTypeId: Int
+  farmingID: ID! @index(name: "byFarming")
+  isSecondaryActivity: Boolean!
+  version: Int
+}
+
+type Farming @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  landOwned: Float
+  cultivationArea: Float
+  areaUnit: String
+  isPostHarvestStorageAvailable: Boolean
+  isCropInsured: Boolean
+  FarmingToEquipments: [Equipment] @hasMany(indexName: "byFarming", fields: ["id"])
+  FarmingToIrrigations: [Irrigation] @hasMany(indexName: "byFarming", fields: ["id"])
+  FarmingToCropSeasons: [CropSeason] @hasMany(indexName: "byFarming", fields: ["id"])
+  areaUnitId: Int
+  isSecondaryActivity: Boolean!
+  version: Int
+}
+
+type Staff @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  firstName: String!
+  middleName: String
+  lastName: String!
+  phone: String!
+  email: String!
+  designation: String
+  isSuperAdmin: Boolean
+  isAdmin: Boolean
+  addPrivilege: Boolean
+  editPrivilege: Boolean
+  deletePrivilege: Boolean
+  viewPrivilege: Boolean
+  changedInitialPassword: Boolean
+  userTypeId: Int
+  isActive: Boolean
+  userId: String
+}
+
+type FarmerApplication @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  userId: String!
+  applicationId: String!
+  activityId: Int
+  status: Int!
+  FarmerApplicationToBio: Bio @hasOne
+  FarmerApplicationToFarming: Farming @hasOne
+  FarmerApplicationToFarmerSecondaryActivities: [FarmerSecondaryActivity] @hasMany(indexName: "byFarmerApplication", fields: ["id"])
+  FarmerApplicationToLoans: [Loan] @hasMany(indexName: "byFarmerApplication", fields: ["id"])
+  version: Int
+  finYear: String
+}
+
+type Bio @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  name: String
+  dob: String
+  email: String
+  altPhone: String
+  fullAddress: String
+  village: String
+  district: String
+  city: String
+  state: String
+  pin: String
+  profilePicUrl: String
+  isComplete: Boolean!
+  version: Int
+  familymembers: [FamilyMember] @manyToMany(relationName: "FamilyMemberBio")
+}
+
+type AadhaarId @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  userId: String!
+  verified: Boolean
+  verificationId: String
+  AadhaarToAadhaarKycOcrFront: AadhaarKycOcrDataFront @hasOne
+  AadhaarToAadhaarKycOcrBack: AadhaarKycOcrDataBack @hasOne
+}
+
+type AadhaarKycOcrDataBack @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  documentType: String
+  subType: String
+  number: String
+  addressFull: String
+  pin: String
+  building: String
+  city: String
+  district: String
+  floor: String
+  house: String
+  locality: String
+  state: String
+  street: String
+  complex: String
+  landmark: String
+  relation: String
+  name: String
+  numberCS: String
+  addressCS: String
+  pinCS: String
+}
+
+type AadhaarKycOcrDataFront @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  number: String!
+  name: String
+  documentType: String
+  subType: String
+  dob: String
+  father: String
+  gender: String
+  husband: String
+  mother: String
+  yob: String
+  numberCS: String
+  nameCS: String
+  dobCS: String
+  fatherCS: String
+  genderCS: String
+  husbandCS: String
+  motherCS: String
+  yobCS: String
+}
+ 

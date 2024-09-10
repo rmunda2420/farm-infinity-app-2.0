@@ -1,0 +1,6 @@
+{
+  "AppSyncApiName": "farminfinity",
+  "DynamoDBBillingMode": "PAY_PER_REQUEST",
+  "DynamoDBEnableServerSideEncryption": false,
+  "AuthModeLastUpdated": "2024-06-27T09:41:45.142Z"
+}

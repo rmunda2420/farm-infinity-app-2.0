@@ -1,0 +1,50 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-farminfinity-dev-205517-authRole",
+      "UnauthRoleArn": "arn:aws:iam::866848629398:role/amplify-farminfinity-dev-205517-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::866848629398:role/amplify-farminfinity-dev-205517-authRole",
+      "Region": "ap-south-1",
+      "DeploymentBucketName": "amplify-farminfinity-dev-205517-deployment",
+      "UnauthRoleName": "amplify-farminfinity-dev-205517-unauthRole",
+      "StackName": "amplify-farminfinity-dev-205517",
+      "StackId": "arn:aws:cloudformation:ap-south-1:866848629398:stack/amplify-farminfinity-dev-205517/0e654680-eb85-11ee-a156-0209c910dcf9",
+      "AmplifyAppId": "d1uq3cnn0ozjwp"
+    },
+    "categories": {
+      "api": {
+        "farminfinity": {}
+      },
+      "auth": {
+        "farminfinity": {}
+      },
+      "storage": {
+        "s3farminfinitystorage46a8d623": {}
+      }
+    }
+  },
+  "prod": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-farminfinity-prod-8d0d6-authRole",
+      "UnauthRoleArn": "arn:aws:iam::866848629398:role/amplify-farminfinity-prod-8d0d6-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::866848629398:role/amplify-farminfinity-prod-8d0d6-authRole",
+      "Region": "ap-south-1",
+      "DeploymentBucketName": "amplify-farminfinity-prod-8d0d6-deployment",
+      "UnauthRoleName": "amplify-farminfinity-prod-8d0d6-unauthRole",
+      "StackName": "amplify-farminfinity-prod-8d0d6",
+      "StackId": "arn:aws:cloudformation:ap-south-1:866848629398:stack/amplify-farminfinity-prod-8d0d6/2a490120-377a-11ef-80a0-061a47fda052",
+      "AmplifyAppId": "d1uq3cnn0ozjwp"
+    },
+    "categories": {
+      "auth": {
+        "farminfinity": {}
+      },
+      "api": {
+        "farminfinity": {}
+      },
+      "storage": {
+        "s3farminfinitystorage46a8d623": {}
+      }
+    }
+  }
+}
