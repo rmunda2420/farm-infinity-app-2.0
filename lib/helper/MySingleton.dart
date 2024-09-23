@@ -7,7 +7,6 @@ import 'package:http/http.dart' as http;
 import 'package:amplify_api/amplify_api.dart';
 import 'package:amplify_flutter/amplify_flutter.dart';
 
-import '../amplifyconfiguration.dart';
 import '../configurations/amplifyconfiguration_dev.dart';
 import '../configurations/amplifyconfiguration_prod.dart';
 import '../models/ModelProvider.dart';
