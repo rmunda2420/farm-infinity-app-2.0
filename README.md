@@ -13,6 +13,6 @@ Farmer journey
 <img src="./screenshots/Screenshot_20230815_104722.png" alt="Verify and upload" width="200"/>
 <img src="./screenshots/Screenshot_20240112_091539.png" alt="Verify and upload" width="200"/>
 <img src="./screenshots/Screenshot_20240114_231849.png" alt="Verify and upload" width="200"/>
-<img src="./screenshots/Screenshot_20240131_124650.png" alt="Verify and upload" width="200"/>
 <img src="./screenshots/Screenshot_20240110_223649.png" alt="Verify and upload" width="200"/>
+<img src="./screenshots/Screenshot_20240131_124650.png" alt="Verify and upload" width="200"/>
 </div>
