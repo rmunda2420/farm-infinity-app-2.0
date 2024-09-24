@@ -1,5 +1,7 @@
-An onboarding android app for farmers for data analytic and credit scoring
+## Flutter App ##
+
+An onboarding android app for farmers for data analytics and credit scoring.
 
 Screen Shots
 
-![Flash Screen](./screenshots/Screenshot_20230815_104225.png)
+<img src="./screenshots/Screenshot_20230815_104225.png" alt="Flash Screen" width="400"/>
