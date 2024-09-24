@@ -11,7 +11,7 @@ Farmer journey
 <img src="./screenshots/Screenshot_20230815_104225.png" alt="Flash Screen" width="200"/>
 <img src="./screenshots/Screenshot_20230815_104648.png" alt="Upload document" width="200"/>
 <img src="./screenshots/Screenshot_20230815_104722.png" alt="Verify and upload" width="200"/>
-<img src="./screenshots/Screenshot_20240107_155149.png" alt="Verify and upload" width="200"/>
+<img src="./screenshots/Screenshot_20240112_091539.png" alt="Verify and upload" width="200"/>
 <img src="./screenshots/Screenshot_20240107_155149.png" alt="Verify and upload" width="200"/>
 <img src="./screenshots/Screenshot_20240107_155149.png" alt="Verify and upload" width="200"/>
 <img src="./screenshots/Screenshot_20240107_155149.png" alt="Verify and upload" width="200"/>
