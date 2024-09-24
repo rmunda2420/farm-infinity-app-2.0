@@ -1,8 +1,8 @@
 ## Flutter App ##
 
-An onboarding android app for farmers for data analytics and credit scoring.
+An onboarding Android app for farmers for data analytics and credit scoring.
 
-Screen Shots
+Screenshots
 
 Farmer journey
 <div>
